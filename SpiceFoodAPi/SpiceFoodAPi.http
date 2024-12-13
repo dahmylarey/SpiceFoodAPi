@@ -1,0 +1,6 @@
+@SpiceFoodAPi_HostAddress = http://localhost:5234
+
+GET {{SpiceFoodAPi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
