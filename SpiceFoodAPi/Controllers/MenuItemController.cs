@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SpiceApi.Interface;
 using SpiceApi.Repositories;
 using SpiceS.Models;
 
@@ -8,12 +9,14 @@ namespace SpiceApi.Controllers
     [ApiController]
     public class MenuItemController : ControllerBase
     {
-        private readonly MenuItemRepository itemRepository;
+        private readonly MenuItemInterface _menuItemInterface;
 
-        public MenuItemController(MenuItemRepository itemRepository)
+        public MenuItemController(MenuItemInterface menuItemInterface)
         {
-            this.itemRepository = itemRepository;
+            _menuItemInterface = menuItemInterface;
         }
+
+
 
 
         //all MenuItem
@@ -21,7 +24,7 @@ namespace SpiceApi.Controllers
         [Route("all-menuItem")]
         public async Task<IActionResult>AllMenuItems(MenuItem entity)
         {
-            var response = await itemRepository.AllMenuItems(entity);
+            var response = await _menuItemInterface.AllMenuItems(entity);
             if (response is null)
             {
                 return BadRequest();
@@ -34,7 +37,7 @@ namespace SpiceApi.Controllers
         [Route("menuItemby-id")]
         public async Task<IActionResult>MenuItemById(int Id)
         {
-            var response = await itemRepository.MenuItemById(Id);
+            var response = await _menuItemInterface.MenuItemById(Id);
             if (response == null)
             {
                 return BadRequest();
@@ -47,7 +50,7 @@ namespace SpiceApi.Controllers
         [Route("new-menuitem")]
         public async Task<IActionResult>CreateMenuItem(MenuItem entity)
         {
-            await itemRepository.CreateMenuItem(entity);
+            await _menuItemInterface.CreateMenuItem(entity);
             if (entity == null)
             {
                 return NotFound();
@@ -60,7 +63,7 @@ namespace SpiceApi.Controllers
         [Route("edit-menuItem")]
         public async Task<IActionResult>EditMenuItem(MenuItem entity)
         {
-            await itemRepository.EditMenuItem(entity);
+            await _menuItemInterface.EditMenuItem(entity);
             if (entity == null)
             {
                 return NotFound();
@@ -74,7 +77,7 @@ namespace SpiceApi.Controllers
         [Route("delete-menuItem")]
         public async Task<IActionResult> DeleteMenuItem(int Id)
         {
-            await itemRepository.DeleteMenuItem(Id);
+            await _menuItemInterface.DeleteMenuItem(Id);
             if (Id == null)
             {
                 return NotFound();

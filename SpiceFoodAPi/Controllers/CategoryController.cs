@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SpiceApi.Interface;
 using SpiceApi.Repositories;
 using SpiceS.Models;
 
@@ -8,12 +9,12 @@ namespace SpiceApi.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly CategoryRepository _categoryRepository;
+        private readonly CategoryInterface _categoryInterface;
         
 
-        public CategoryController(CategoryRepository categoryRepository)
+        public CategoryController(CategoryInterface categoryInterface)
         {
-            _categoryRepository = categoryRepository;
+            _categoryInterface = categoryInterface;
            
         }
 
@@ -22,7 +23,7 @@ namespace SpiceApi.Controllers
         [Route("all-category")]
         public async Task<IActionResult>GetAllCategory(Category entity)
         {
-            var response = await _categoryRepository.GetAllCategory(entity);
+            var response = await _categoryInterface.GetAllCategory(entity);
             if (response is null)
             {
                 return BadRequest();
@@ -35,7 +36,7 @@ namespace SpiceApi.Controllers
         [Route("get-category-by-id")]
         public async Task<IActionResult>GetCategoryById(int id)
         {
-            var response = await _categoryRepository.GetCategoryById(id);
+            var response = await _categoryInterface.GetCategoryById(id);
             if (response==null)
             {
                 return BadRequest();
@@ -48,7 +49,7 @@ namespace SpiceApi.Controllers
         [Route("new-category")]
         public async Task<IActionResult>CreateCategory(Category entity)
         {
-             await _categoryRepository.CreateCategory(entity);
+             await _categoryInterface.CreateCategory(entity);
             if (entity == null)
             {
                 return NotFound();
@@ -62,7 +63,7 @@ namespace SpiceApi.Controllers
         [Route("Edit-category")]
         public async Task<IActionResult>UpdateCategory(Category entity)
         {
-            await _categoryRepository.UpdateCategory(entity);
+            await _categoryInterface.UpdateCategory(entity);
             if (entity == null)
             {
                 return NotFound();
@@ -76,7 +77,7 @@ namespace SpiceApi.Controllers
         [Route("Delete-category")]
         public async Task<IActionResult>DeleteCategory(int id)
         {
-           await _categoryRepository.DeleteCategory(id);
+           await _categoryInterface.DeleteCategory(id);
             
             return Ok();
 

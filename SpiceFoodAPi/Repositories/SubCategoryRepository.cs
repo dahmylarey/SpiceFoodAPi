@@ -23,9 +23,9 @@ namespace SpiceApi.Repositories
         //Get all  
         public async Task<List<SubCategory>> AllSubCategory(SubCategory entity)
         {
-            var allSubCate = await _context.SubCategories.Include(s=>s.Category).ToListAsync();
+            return await _context.SubCategories.Include(s=>s.Category).ToListAsync();
 
-            return allSubCate;
+            
         }
 
 

@@ -20,7 +20,6 @@ namespace SpiceApi.Repositories
         {
            return await _context.Categories.ToListAsync();
 
-            
         }
 
 
