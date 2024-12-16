@@ -27,7 +27,12 @@ namespace SpiceApi.Repositories
 
         public async Task<Category> GetCategoryById(int Id)
         {
-            return _context.Categories!.Where(o => o.Id == Id).FirstOrDefault()!;
+            var categorybyid = await _context.Categories!.FindAsync();
+            if (categorybyid != null)
+            {
+                return categorybyid;
+            }
+            return new Category();
         }
 
 
