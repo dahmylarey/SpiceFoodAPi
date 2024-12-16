@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpiceApi.Interface;
-using SpiceApi.Repositories;
 using SpiceS.Models;
 
 namespace SpiceApi.Controllers
@@ -33,7 +32,7 @@ namespace SpiceApi.Controllers
 
         //By id
         [HttpGet]
-        [Route("get-category-by-id")]
+        [Route("category-by-id")]
         public async Task<IActionResult>GetCategoryById(int id)
         {
             var response = await _categoryInterface.GetCategoryById(id);

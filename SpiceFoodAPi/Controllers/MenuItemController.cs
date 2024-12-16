@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpiceApi.Interface;
-using SpiceApi.Repositories;
 using SpiceS.Models;
 
 namespace SpiceApi.Controllers
