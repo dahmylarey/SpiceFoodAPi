@@ -19,9 +19,9 @@ namespace SpiceApi.Controllers
         //all MenuItem
         [HttpGet]
         [Route("all-menuItem")]
-        public async Task<IActionResult>AllMenuItems()
+        public async Task<IActionResult>AllMenuItems(MenuItem entity)
         {
-            var response = await itemRepository.AllMenuItems();
+            var response = await itemRepository.AllMenuItems(entity);
             if (response is null)
             {
                 return BadRequest();
@@ -52,7 +52,7 @@ namespace SpiceApi.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(entity);
         }
 
         //Update MenuItem
@@ -65,7 +65,7 @@ namespace SpiceApi.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(entity);
 
         }
 

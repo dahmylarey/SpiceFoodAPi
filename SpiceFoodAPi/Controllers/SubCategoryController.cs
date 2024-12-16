@@ -22,9 +22,9 @@ namespace SpiceApi.Controllers
 
         [HttpGet]
         [Route("all-subcategory")]
-        public async Task<IActionResult>AllSubCategory()
+        public async Task<IActionResult>AllSubCategory(SubCategory entity)
         {
-            var response = await subCategory.AllSubCategory();
+            var response = await subCategory.AllSubCategory(entity);
             if (response is null)
             {
                 return BadRequest();
@@ -42,7 +42,7 @@ namespace SpiceApi.Controllers
             {
                 return BadRequest();
             }
-            return Ok(Id);
+            return Ok(response);
         }
 
         //New SubCategory
@@ -58,7 +58,7 @@ namespace SpiceApi.Controllers
 
 
 
-            return Ok();
+            return Ok(entity);
         }
 
         //Update SuCategory
@@ -73,7 +73,7 @@ namespace SpiceApi.Controllers
             }
 
             
-            return Ok();
+            return Ok(entity);
 
         }
 

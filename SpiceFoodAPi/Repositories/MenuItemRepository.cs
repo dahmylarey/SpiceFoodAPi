@@ -9,7 +9,7 @@ namespace SpiceApi.Repositories
     {
         private readonly SpiceFoodAPIDbContext _context;
 
-        public async Task<List<MenuItem>> AllMenuItems()
+        public async Task<List<MenuItem>> AllMenuItems(MenuItem entity)
         {
             var menuItems = await _context.MenuItem.Include(m => m.Category).Include(m => m.SubCategory).ToListAsync();
             return menuItems;

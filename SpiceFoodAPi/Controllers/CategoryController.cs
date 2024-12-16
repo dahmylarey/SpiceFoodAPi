@@ -20,9 +20,9 @@ namespace SpiceApi.Controllers
         //all category
         [HttpGet]
         [Route("all-category")]
-        public async Task<IActionResult>GetAllCategory()
+        public async Task<IActionResult>GetAllCategory(Category entity)
         {
-            var response = await _categoryRepository.GetAllCategory();
+            var response = await _categoryRepository.GetAllCategory(entity);
             if (response is null)
             {
                 return BadRequest();
@@ -40,7 +40,7 @@ namespace SpiceApi.Controllers
             {
                 return BadRequest();
             }
-            return Ok(id);
+            return Ok(response);
         }
 
         //New Category
@@ -53,7 +53,7 @@ namespace SpiceApi.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(entity);
         }
 
 
@@ -67,7 +67,7 @@ namespace SpiceApi.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(entity);
 
         }
 

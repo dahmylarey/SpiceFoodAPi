@@ -16,11 +16,11 @@ namespace SpiceApi.Repositories
 
 
         //Get all
-        public async Task<List<Category>> GetAllCategory()
+        public async Task<List<Category>> GetAllCategory(Category entity)
         {
-            var allCategories = await _context.Categories.ToListAsync();
+           return await _context.Categories.ToListAsync();
 
-            return allCategories;
+            
         }
 
 
