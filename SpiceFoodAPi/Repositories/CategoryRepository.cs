@@ -50,7 +50,7 @@ namespace SpiceApi.Repositories
         //Delete
         public async Task<Category> DeleteCategory(int Id)
         {
-            var deln = await _context.Categories!.FindAsync(Id);
+            var deln = await _context.Categories!.Where(c => c.Id == Id).FirstOrDefaultAsync();
             if (deln != null)
             {
                 _context.Categories.Remove(deln);

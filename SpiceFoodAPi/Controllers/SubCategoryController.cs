@@ -17,7 +17,7 @@ namespace SpiceApi.Controllers
         }
 
         [HttpGet]
-        [Route("all-subcategory")]
+        [Route("all-subcat")]
         public async Task<IActionResult>AllSubCategory(SubCategory entity)
         {
             var response = await _subCategoryInterface.AllSubCategory(entity);
@@ -30,7 +30,7 @@ namespace SpiceApi.Controllers
 
         //By id
         [HttpGet]
-        [Route("subcategoryby-id")]
+        [Route("subcateby-id")]
         public async Task<IActionResult>SubCategoryById(int Id)
         {
             var response = await _subCategoryInterface.SubCategoryById(Id);
@@ -43,7 +43,7 @@ namespace SpiceApi.Controllers
 
         //New SubCategory
         [HttpPost]
-        [Route("new-category")]
+        [Route("new-subcate")]
         public async Task<IActionResult>AddSubCategory(SubCategory entity)
         {
             await _subCategoryInterface.AddSubCategory(entity);
@@ -59,7 +59,7 @@ namespace SpiceApi.Controllers
 
         //Update SuCategory
         [HttpPut]
-        [Route("update-subcategory")]
+        [Route("update-subcate")]
         public async Task<IActionResult>UpdateSubCategory(SubCategory entity)
         {
             await _subCategoryInterface.UpdateSubCategory(entity);
@@ -75,7 +75,7 @@ namespace SpiceApi.Controllers
 
         //Remove SubCategory
         [HttpDelete]
-        [Route("remove-subcategory")]
+        [Route("remove-subcate")]
         public async Task<IActionResult>RemoveSubCategory(int Id)
         {
             await _subCategoryInterface.RemoveSubCategory(Id);

@@ -21,16 +21,15 @@ namespace SpiceApi.Repositories
           var create =  _context.MenuItem.AddAsync(entity);
             if (create != null)
             {
-              await  _context.MenuItem.AddAsync(entity);
+                _context.MenuItem.AddAsync(entity);
                 await _context.SaveChangesAsync();
             }
-                
-          
+                          
         }
 
         public async Task DeleteMenuItem(int Id)
         {
-           var deln = await _context.MenuItem!.FindAsync(Id);
+           var deln = await _context.MenuItem!.Where(c => c.Id == Id).FirstOrDefaultAsync();
             if (deln != null)
             {
                 _context.MenuItem.Remove(deln);

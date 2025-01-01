@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SpiceApi.Interface;
 using SpiceApi.Model;
 using SpiceApi.Model.ViewModel;
@@ -42,23 +43,18 @@ namespace SpiceApi.Repositories
         //Add new Sbcategory
         public async Task AddSubCategory(SubCategory entity)
         {
-            
-            SubCategoryAndCategoryViewModel model = new SubCategoryAndCategoryViewModel()
+           var Addsub = await _context.SubCategories.OrderBy(p => p.Name).Select(p => p.Name).Distinct().ToListAsync();
+            if (Addsub != null)
             {
-                CategoryList = await _context.Categories.ToListAsync(),
-                SubCategory = new SubCategory(),
-                SubCategoryList = await _context.SubCategories.OrderBy(p => p.Name).Select(p => p.Name).Distinct().ToListAsync(),
-                StatusMessage = StatusMessage
-
-            };
-            _context.SubCategories.Add(model.SubCategory);
-            await _context.SaveChangesAsync();
+                _context.SubCategories.Add(entity);
+                await _context.SaveChangesAsync();
+            }
         }
 
         //Delete
         public async Task<SubCategory> RemoveSubCategory(int Id)
         {
-           var existSub = await _context.SubCategories!.FindAsync(Id);
+           var existSub = await _context.SubCategories!.Where(c => c.Id == Id).FirstOrDefaultAsync();
             if (existSub != null)
             {
                 _context.SubCategories.Remove(existSub);

@@ -19,7 +19,7 @@ namespace SpiceApi.Controllers
 
         //all category
         [HttpGet]
-        [Route("all-category")]
+        [Route("all-cate")]
         public async Task<IActionResult>GetAllCategory(Category entity)
         {
             var response = await _categoryInterface.GetAllCategory(entity);
@@ -32,7 +32,7 @@ namespace SpiceApi.Controllers
 
         //By id
         [HttpGet]
-        [Route("category-by-id")]
+        [Route("cateby-id")]
         public async Task<IActionResult>GetCategoryById(int id)
         {
             var response = await _categoryInterface.GetCategoryById(id);
@@ -45,7 +45,7 @@ namespace SpiceApi.Controllers
 
         //New Category
         [HttpPost]
-        [Route("new-category")]
+        [Route("new-cate")]
         public async Task<IActionResult>CreateCategory(Category entity)
         {
              await _categoryInterface.CreateCategory(entity);
@@ -59,7 +59,7 @@ namespace SpiceApi.Controllers
 
         //Update Category
         [HttpPut]
-        [Route("Edit-category")]
+        [Route("update-cate")]
         public async Task<IActionResult>UpdateCategory(Category entity)
         {
             await _categoryInterface.UpdateCategory(entity);
@@ -73,7 +73,7 @@ namespace SpiceApi.Controllers
 
         //Delete Category
         [HttpDelete]
-        [Route("Delete-category")]
+        [Route("Delete-categ")]
         public async Task<IActionResult>DeleteCategory(int Id)
         {
            await _categoryInterface.DeleteCategory(Id);
