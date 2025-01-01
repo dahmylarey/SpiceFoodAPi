@@ -10,12 +10,10 @@ namespace SpiceApi.Controllers
     public class SubCategoryController : ControllerBase
     {
         private readonly SubCategoryInterface _subCategoryInterface;
-        private readonly SpiceFoodAPIDbContext _db;
 
-        public SubCategoryController(SubCategoryInterface subCategoryInterface, SpiceFoodAPIDbContext db)
+        public SubCategoryController(SubCategoryInterface subCategoryInterface)
         {
             _subCategoryInterface = subCategoryInterface;
-            _db = db;
         }
 
         [HttpGet]
@@ -81,10 +79,7 @@ namespace SpiceApi.Controllers
         public async Task<IActionResult>RemoveSubCategory(int Id)
         {
             await _subCategoryInterface.RemoveSubCategory(Id);
-            if (Id == null)
-            {
-                return NotFound();
-            }
+            
             return Ok();
 
         }

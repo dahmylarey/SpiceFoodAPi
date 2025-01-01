@@ -74,9 +74,9 @@ namespace SpiceApi.Controllers
         //Delete Category
         [HttpDelete]
         [Route("Delete-category")]
-        public async Task<IActionResult>DeleteCategory(int id)
+        public async Task<IActionResult>DeleteCategory(int Id)
         {
-           await _categoryInterface.DeleteCategory(id);
+           await _categoryInterface.DeleteCategory(Id);
             
             return Ok();
 

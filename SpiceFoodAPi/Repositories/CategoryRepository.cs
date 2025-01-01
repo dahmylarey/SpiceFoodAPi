@@ -16,9 +16,11 @@ namespace SpiceApi.Repositories
 
 
         //Get all
-        public async Task<List<Category>> GetAllCategory(Category entity)
+        public async Task<IEnumerable<Category>> GetAllCategory(Category entity)
         {
-           return await _context.Categories.ToListAsync();
+            await _context.Categories.ToListAsync();
+
+            return _context.Categories;
 
         }
 
@@ -27,11 +29,12 @@ namespace SpiceApi.Repositories
 
         public async Task<Category> GetCategoryById(int Id)
         {
-            var categorybyid = await _context.Categories!.FindAsync();
-            if (categorybyid != null)
+             var cate = await _context.Categories!.FindAsync(Id);
+            if (cate != null)
             {
-                return categorybyid;
+                return cate;
             }
+
             return new Category();
         }
 
@@ -45,11 +48,16 @@ namespace SpiceApi.Repositories
         }
 
         //Delete
-        public async Task DeleteCategory(int Id)
+        public async Task<Category> DeleteCategory(int Id)
         {
-            var existCategory = _context.Categories!.FindAsync(Id);
-            _context.Remove(existCategory);
-            await _context.SaveChangesAsync();
+            var deln = await _context.Categories!.FindAsync(Id);
+            if (deln != null)
+            {
+                _context.Categories.Remove(deln);
+                await _context.SaveChangesAsync();
+
+            }
+            return deln!;
 
         }
 
@@ -58,9 +66,9 @@ namespace SpiceApi.Repositories
         //Update
         public async Task UpdateCategory(Category entity)
         {
-            
-            _context.Categories!.Update(entity);
 
+           _context.Categories!.Update(entity);
+           
             await _context.SaveChangesAsync();
 
         }

@@ -8,7 +8,7 @@ namespace SpiceApi.Interface
 
         Task AddSubCategory(SubCategory entity);
         Task<List<SubCategory>> AllSubCategory(SubCategory entity);
-        Task RemoveSubCategory(int Id);
+        Task <SubCategory>RemoveSubCategory(int Id);
         Task<SubCategory> SubCategoryById(int Id);
         Task UpdateSubCategory(SubCategory entity);
     }

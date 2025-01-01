@@ -56,11 +56,15 @@ namespace SpiceApi.Repositories
         }
 
         //Delete
-        public async Task RemoveSubCategory(int Id)
+        public async Task<SubCategory> RemoveSubCategory(int Id)
         {
-            var existSubCate = _context.SubCategories!.FindAsync(Id);
-            _context.Remove(existSubCate);
-            await _context.SaveChangesAsync();
+           var existSub = await _context.SubCategories!.FindAsync(Id);
+            if (existSub != null)
+            {
+                _context.SubCategories.Remove(existSub);
+                await _context.SaveChangesAsync();
+            }
+            return existSub;
         }
 
         //update    
@@ -70,11 +74,13 @@ namespace SpiceApi.Repositories
             subCateFromDb.Name = entity.Name;
 
 
-
-            //bool saved = false;
-            //_context.SubCategories!.Update(entity);
-
-            _context.SaveChangesAsync();
+            if (subCateFromDb != null) {
+                _context.SubCategories.Update(subCateFromDb);
+                await _context.SaveChangesAsync();
+            
+            }
+                       
+                       
         }
 
         public void Dispose()
